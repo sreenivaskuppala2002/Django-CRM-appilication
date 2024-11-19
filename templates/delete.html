@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block msg %}
+{% if messages %}
+{% for msg in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block main %}
+<div class="col-md-4 offset-md-4 rounded mt-3 border text-center p-3">
+            <form action="{% url 'delete' record.id %}" method="post">
+                {% csrf_token %}
+                <strong><label for="">Are you sure to delete {{record.first_name}} record</label></strong>
+                <p>Enter "YES" or "NO" as shown.</p>
+                <input type="text" name='final'><br><br>
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+</div>
+{% endblock %}
